@@ -17,10 +17,29 @@ Please note that you should be on the CSE servers before attempting to run the s
 - `tests/` is a directory containing the test cases.
   - Each test case is a `.hex` file containing the inputs to the program.
 
-## Notes
+## Things to note
+
+The autotest script doesn't check for invalid instructions properly.
+It attempts to match both `stdout` and `stderr` against the reference implementation, although the specs note that any outputs to `stdout` should be ignored if the program halts due to an invalid instruction.
+
+**This is not checked correctly!**
+
+If you have a failed test for `invalid_instruction.hex` with the note that your `stdout` output is incorrect, please ignore!
+
+## Suggestions
 
 If you have suggestions for more test cases, please ping (in the CSESOC #1521 channel) or DM me on discord!
 My discord handle is MysticalFire#2217.
+
+## Credits
+
+Thanks to these amazing people for helping to come up with tests!
+
+- natisV#3704
+  - `div_by_zero.hex`
+  - `invalid_instruction.hex`
+- shinybuncis#6996
+  - `lui_neg.hex`
 
 ## Changelog
 

@@ -23,33 +23,63 @@ let num_failed=0
 
 # Run through autotests
 for test_file in $(find . -name "*hex"); do
-    my_output=$($MY_FILE_PATH $test_file)
-    reference_output=$($SOLUTION_PATH $test_file)
+    $MY_FILE_PATH $test_file 1>your_out.tmp 2>your_err.tmp
+    $SOLUTION_PATH $test_file 1>exp_out.tmp 2>exp_err.tmp
 
-    if [ "$my_output" = "$reference_output" ]; then
-        echo -e "Test $num_tests ($test_file $MY_FILE_PATH) -$green passed$reset"
-        let num_passed++
+    passed="Test $num_tests ($test_file $MY_FILE_PATH) -$green passed$reset"
+    failed="Test $num_tests ($test_file $MY_FILE_PATH) -$red failed$reset"
+
+    if diff -q your_err.tmp exp_err.tmp >/dev/null; then
+        # Output to stderr is correct
+        if diff -q your_out.tmp exp_out.tmp >/dev/null; then
+            # Output to stdout is correct
+            echo -e "$passed"
+            let num_passed++
+        else
+            # Output to stdout is incorrect
+            echo -e "$failed\nYour program's output to stdout is incorrect."
+            diff --color -u your_out.tmp exp_out.tmp
+            let num_failed++
+        fi
     else
-        echo -e "Test $num_tests ($test_file $MY_FILE_PATH) -$red failed$reset"
-        echo "Your program did not match the reference solution here:"
-        diff -h $my_output $reference_output
+        # Output to stderr is incorrect
+        echo -e "$failed\nYour program's output to stderr is incorrect."
+        diff --color -u your_err.tmp exp_err.tmp
         let num_failed++
     fi
     let num_tests++
 
-    my_output=$($MY_FILE_PATH -r $test_file)
-    reference_output=$($SOLUTION_PATH -r $test_file)
+    # Delete tmp files while hiding output
+    rm your_out.tmp your_err.tmp exp_out.tmp exp_err.tmp >/dev/null 2>&1
 
-    if [ "$my_output" = "$reference_output" ]; then
-        echo -e "Test $num_tests ($test_file -r $MY_FILE_PATH) -$green passed$reset"
-        let num_passed++
+    $MY_FILE_PATH -r $test_file 1>your_out.tmp 2>your_err.tmp
+    $SOLUTION_PATH -r $test_file 1>exp_out.tmp 2>exp_err.tmp
+
+    passed="Test $num_tests ($test_file -r $MY_FILE_PATH) -$green passed$reset"
+    failed="Test $num_tests ($test_file -r $MY_FILE_PATH) -$red failed$reset"
+
+    if diff -q your_err.tmp exp_err.tmp >/dev/null; then
+        # Output to stderr is correct
+        if diff -q your_out.tmp exp_out.tmp >/dev/null; then
+            # Output to stdout is correct
+            echo -e "$passed"
+            let num_passed++
+        else
+            # Output to stdout is incorrect
+            echo "$failed\nYour program's output to stdout is incorrect."
+            diff --color -u your_out.tmp exp_out.tmp
+            let num_failed++
+        fi
     else
-        echo -e "Test $num_tests ($test_file -r $MY_FILE_PATH) -$red failed$reset"
-        echo "Your program did not match the reference solution here:"
-        diff -h $my_output $reference_output
+        # Output to stderr is incorrect
+        echo "$failed\nYour program's output to stderr is incorrect."
+        diff --color -u your_err.tmp exp_err.tmp
         let num_failed++
     fi
     let num_tests++
+
+    # Delete tmp files while hiding output
+    rm your_out.tmp your_err.tmp exp_out.tmp exp_err.tmp >/dev/null 2>&1
 done
 
 if [ $num_failed = 0 ]; then

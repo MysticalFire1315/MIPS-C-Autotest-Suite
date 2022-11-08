@@ -40,6 +40,7 @@ Thanks to these amazing people for helping to come up with tests!
   - `invalid_instruction.hex`
 - shinybuncis#6996
   - `lui_neg.hex`
+  - `slt_neg.hex`
 
 ## Changelog
 

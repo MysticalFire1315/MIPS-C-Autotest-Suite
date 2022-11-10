@@ -41,6 +41,10 @@ Thanks to these amazing people for helping to come up with tests!
 - shinybuncis#6996
   - `lui_neg.hex`
   - `slt_neg.hex`
+- Jamo#2849
+  - `branching.hex`
+  - `sub.hex`
+  - `sub_neg.hex`
 
 ## Changelog
 

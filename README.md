@@ -41,13 +41,9 @@ Thanks to these amazing people for helping to come up with tests!
 - shinybuncis#6996
   - `lui_neg.hex`
   - `slt_neg.hex`
+  - `signed_int_overflow.hex`
 - Jamo#2849
   - `branching.hex`
   - `sub.hex`
   - `sub_neg.hex`
 
-## Changelog
-
-### 8 November 2022
-
-- Created repo and added initial test cases.

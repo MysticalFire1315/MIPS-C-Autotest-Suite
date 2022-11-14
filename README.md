@@ -41,7 +41,7 @@ Thanks to these amazing people for helping to come up with tests!
 - shinybuncis#6996
   - `lui_neg.hex`
   - `slt_neg.hex`
-  - `signed_int_overflow.hex`
+  - `signed_int_overflow.hex` (not a case we must handle - see specs)
 - Jamo#2849
   - `branching.hex`
   - `sub.hex`

@@ -46,4 +46,6 @@ Thanks to these amazing people for helping to come up with tests!
   - `branching.hex`
   - `sub.hex`
   - `sub_neg.hex`
-
+- Joltik#4436
+  - `many_zeroes.hex`
+  - `div_by_zero_extend.hex`

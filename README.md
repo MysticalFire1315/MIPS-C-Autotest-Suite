@@ -49,3 +49,6 @@ Thanks to these amazing people for helping to come up with tests!
 - Joltik#4436
   - `many_zeroes.hex`
   - `div_by_zero_extend.hex`
+- Alexis Zhou
+  - `beq_to_neg.hex`
+  - `lui_overflow.hex`

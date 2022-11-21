@@ -52,3 +52,5 @@ Thanks to these amazing people for helping to come up with tests!
 - Alexis Zhou
   - `beq_to_neg.hex`
   - `lui_overflow.hex`
+- Saichiatrist#3042
+  - `add_invalid_half_pattern.hex`

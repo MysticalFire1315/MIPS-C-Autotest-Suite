@@ -2,6 +2,9 @@
 
 Autotest suite for `MIPS-C` (COMP1521 22T3 Assignment 2)
 
+| :warning: WARNING: This repo is no longer maintained. |
+|:------------------------------------------------------|
+
 ## How to use
 
 Start by either cloning this repository or downloading it as a zip and unzipping it in the directory with your `mipsc.c` file.
